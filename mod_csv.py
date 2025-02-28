@@ -1,13 +1,10 @@
 import pandas as pd
-from dash import Dash
 
 df_list = []
 for i in range(3):
     name = "data\daily_sales_data_"
     df = pd.read_csv(name + str(i) + ".csv")
-    print(df.head())
     df = df[df["product"] == "pink morsel"]
-    print(type(df["quantity"][0]))
     df["price"] = (df["price"].str[1:]).astype(float)
     df["sales"] = df["price"] * df["quantity"]
     df = df[["sales", "date", "region"]]
